@@ -2,238 +2,189 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  - <a href='https://app.convertcalculator.co'>Go to ConvertCalculator</a>
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the ConvertCalculator JS API! Create even more versatile calculators using ConvertCalculator's JavaScript API.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Getting started
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+First head over [to the editor](https://app.convertcalculator.co). Make sure you have a premium account ([if not, head over to the billing page](https://app.convertcalculator.co/billing)) and toggle the "Use API" switch in in the settings pane in the calculator editor.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Now make sure you have embedded the calculator on your website. After that, you can create an instance of the ConvertCalculator object. The ID of your calculator is required:
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+window.addEventListener('ccloaded', () => {
+  const convertcalculator = cc.getInstance('HfJXPJuj5pDCEpLfr');
+});
 ```
+# Calculator
 
-> Make sure to replace `meowmeowmeow` with your API key.
+## Methods
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+### addFormData(name, value)
+Adds and extra key value pair to a form submission.
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+convertcalculator.calculator.addFormData('No. of Bananas', 12);
 ```
 
-> The above command returns JSON structured like this:
+## on(event, handler)
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+The way to communicate with the calculator is through events. The following events can be emitted:
+
+Event | Description
+--------- | -----------
+**submit** | Triggered when a visitor submits a form
+
+```javascript
+convertcalculator.calculator.on('submit', (err, res) => {
+  if (!err) {
+    // Do something with the result
+    console.log(res);
   }
-]
+});
 ```
 
-This endpoint retrieves all kittens.
+# Questions
 
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
+## Properties
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+`questions` | An array of Question objects
 
-## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
+## Methods
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+### getById(questionId)
+Get a question model by it's ID. To find an id, `console.log(convertcalculator.questions)`.
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+const question = convertcalculator.questions.getById('uKFTJWxrjHARvFixE');
 ```
 
-> The above command returns JSON structured like this:
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+### add(properties)
+Add a new question to the calculator.
+
+```javascript
+const newQuestion = convertcalculator.questions.add({
+  _id: 'sample_id',
+  title: 'How much money is in the bananastand?',
+  description: 'You tell me, mr. Manager',
+  type: 'custom',
+  order: 1,
+});
 ```
 
-This endpoint deletes a specific kitten.
+# Question
 
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
+## Properties
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+`_id` | String
+`title` | String
+`description` | String
+`order` | Number
+`type` | String `(range, radio, places, dates, orderList, separator, switch, text)`
+`[type]` | Object of type Properties
 
+
+## Methods
+
+### setAnswer(answer)
+Set the answer to a question programmatically. This will update any formulas in which the question is included/
+
+### setDescription(description)
+Set the description of the question programmatically.
+
+### setTitle(title)
+Set the title of the question programmatically.
+
+```javascript
+  question.setAnswer({ label: '30', value: 35 });
+```
+
+### getElement()
+Get the DOM element of the question. If you want to create custom HTML, you need to get the DOM element and do something with it.
+
+```javascript
+  const questionEl = question.getElement();
+  questionEl.innerHTML = '<input type="month" />';
+```
+
+
+# Formulas
+
+## Properties
+
+Parameter | Description
+--------- | -----------
+`formulas` | An array of Formula objects
+
+## Methods
+
+### getById(formulaId)
+Get a Formula model by it's ID. To find an id, `console.log(convertcalculator.formulas)`.
+
+```javascript
+const question = convertcalculator.formulas.getById('uKFTJWxrjHARvFixE');
+```
+
+
+### add(properties)
+Add a new formula to the calculator.
+
+```javascript
+const newFormula = convertcalculator.questions.add({
+  _id: 'new_formula',
+  title: 'There is always money in the bananastand',
+  order: 1,
+  equation: 'QA * QC',
+});
+```
+
+# Formula
+
+## Properties
+
+Parameter | Description
+--------- | -----------
+`_id` | String
+`title` | String
+`description` | String
+`order` | Number
+
+
+## Methods
+
+### setEquation(equation)
+Set the equation of a formula programmatically.
+
+### setDescription(description)
+Set the description of the formula programmatically.
+
+### setTitle(title)
+Set the title of the formula programmatically.
+
+```javascript
+  const otherValue = 145;
+  question.setEquation(`QA * QB * ${otherValue}`);
+```
+
+### getElement()
+Get the DOM element of the formula.
+
+```javascript
+  const formulaEl = formula.getElement();
+  formulaEl.innerHTML = '<h3>Completely remove the formula result and replace it with something else.</h3>';
+```
