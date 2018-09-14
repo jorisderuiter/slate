@@ -43,13 +43,15 @@ The way to communicate with the calculator is through events. The following even
 Event | Description
 --------- | -----------
 **submit** | Triggered when a visitor submits a form
+**interaction** | Triggered when a visitor interacts with the calculator
 
 ```javascript
-convertcalculator.calculator.on('submit', (err, res) => {
-  if (!err) {
-    // Do something with the result
-    console.log(res);
-  }
+convertcalculator.calculator.on('submit', (formData) => {
+  console.log(formData);
+});
+
+convertcalculator.calculator.on('interaction', (questions, formulas) => {
+  console.log(questions, formulas);
 });
 ```
 
@@ -100,6 +102,14 @@ Parameter | Description
 
 
 ## Methods
+
+### getAnswer()
+Get the current answer to a question programmatically. Every question has a `label` and a `value`. The `label` is a formatted `value`. Some questions (like the Places and Date question) have an extra `data` object that include some additional values (e.g. `isWeekend` in Date and `fromPlaceId` in Places).
+
+```JavaScript
+const answer = question.getAnswer();
+const { label, value, data } = answer;
+```
 
 ### setAnswer(answer)
 Set the answer to a question programmatically. This will update any formulas in which the question is included/
