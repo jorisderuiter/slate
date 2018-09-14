@@ -312,12 +312,17 @@
 <td><strong>submit</strong></td>
 <td>Triggered when a visitor submits a form</td>
 </tr>
+<tr>
+<td><strong>interaction</strong></td>
+<td>Triggered when a visitor interacts with the calculator</td>
+</tr>
 </tbody></table>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Do something with the result</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
-  <span class="p">}</span>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="p">(</span><span class="nx">formData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formData</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'interaction'</span><span class="p">,</span> <span class="p">(</span><span class="nx">questions</span><span class="p">,</span> <span class="nx">formulas</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">questions</span><span class="p">,</span> <span class="nx">formulas</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre><h1 id='questions'>Questions</h1><h2 id='properties'>Properties</h2>
 <table><thead>
@@ -375,7 +380,11 @@
 <td>Object of type Properties</td>
 </tr>
 </tbody></table>
-<h2 id='methods-3'>Methods</h2><h3 id='setanswer-answer'>setAnswer(answer)</h3>
+<h2 id='methods-3'>Methods</h2><h3 id='getanswer'>getAnswer()</h3>
+<p>Get the current answer to a question programmatically. Every question has a <code>label</code> and a <code>value</code>. The <code>label</code> is a formatted <code>value</code>. Some questions (like the Places and Date question) have an extra <code>data</code> object that include some additional values (e.g. <code>isWeekend</code> in Date and <code>fromPlaceId</code> in Places).</p>
+<pre class="highlight plaintext"><code>const answer = question.getAnswer();
+const { label, value, data } = answer;
+</code></pre><h3 id='setanswer-answer'>setAnswer(answer)</h3>
 <p>Set the answer to a question programmatically. This will update any formulas in which the question is included/</p>
 <h3 id='setdescription-description'>setDescription(description)</h3>
 <p>Set the description of the question programmatically.</p>
