@@ -191,6 +191,16 @@ Set the title of the formula programmatically.
   question.setEquation(`QA * QB * ${otherValue}`);
 ```
 
+### getResult()
+Get the current formula result. This is an object that contains `result`, `resultFormatted` and `resultFormattedFull`.
+
+```javascript
+  const formulaResult = formula.getResult();
+  console.log(`The number: ${formulaResult.result}`);
+  console.log(`The formatted number: ${formulaResult.resultFormatted}`);
+  console.log(`The formatted number with prefix and suffix: ${formulaResult.resultFormattedFull}`);
+```
+
 ### getElement()
 Get the DOM element of the formula.
 
