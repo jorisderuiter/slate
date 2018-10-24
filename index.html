@@ -450,6 +450,12 @@ const { label, value, data } = answer;
 <p>Set the title of the formula programmatically.</p>
 <pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">otherValue</span> <span class="o">=</span> <span class="mi">145</span><span class="p">;</span>
   <span class="nx">question</span><span class="p">.</span><span class="nx">setEquation</span><span class="p">(</span><span class="s2">`QA * QB * </span><span class="p">${</span><span class="nx">otherValue</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre><h3 id='getresult'>getResult()</h3>
+<p>Get the current formula result. This is an object that contains <code>result</code>, <code>resultFormatted</code> and <code>resultFormattedFull</code>.</p>
+<pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">formulaResult</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getResult</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The formatted number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormatted</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The formatted number with prefix and suffix: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormattedFull</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre><h3 id='getelement-2'>getElement()</h3>
 <p>Get the DOM element of the formula.</p>
 <pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">formulaEl</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getElement</span><span class="p">();</span>
