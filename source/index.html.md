@@ -66,11 +66,11 @@ Parameter | Description
 
 ## Methods
 
-### getById(questionId)
-Get a question model by it's ID. To find an id, `console.log(convertcalculator.questions)`.
+### getByReference(questionReference)
+Get a question model by it's Reference (eg. QA).
 
 ```javascript
-const question = convertcalculator.questions.getById('uKFTJWxrjHARvFixE');
+const question = convertcalculator.questions.getByReference('QA');
 ```
 
 
@@ -94,6 +94,7 @@ const newQuestion = convertcalculator.questions.add({
 Parameter | Description
 --------- | -----------
 `_id` | String
+`reference` | String
 `title` | String
 `description` | String
 `order` | Number
@@ -143,11 +144,11 @@ Parameter | Description
 
 ## Methods
 
-### getById(formulaId)
-Get a Formula model by it's ID. To find an id, `console.log(convertcalculator.formulas)`.
+### getByReference(formulaReference)
+Get a Formula model by it's reference (e.g. FA).
 
 ```javascript
-const question = convertcalculator.formulas.getById('uKFTJWxrjHARvFixE');
+const question = convertcalculator.formulas.getByReference('FA');
 ```
 
 
@@ -170,6 +171,7 @@ const newFormula = convertcalculator.questions.add({
 Parameter | Description
 --------- | -----------
 `_id` | String
+`reference` | String
 `title` | String
 `description` | String
 `order` | Number
