@@ -230,9 +230,6 @@
                   <li>
                     <a href="#methods" class="toc-h2 toc-link" data-title="Methods">Methods</a>
                   </li>
-                  <li>
-                    <a href="#on-event-handler" class="toc-h2 toc-link" data-title="on(event, handler)">on(event, handler)</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -293,13 +290,13 @@
 <p>First head over <a href="https://app.convertcalculator.co">to the editor</a>. Make sure you have a premium account (<a href="https://app.convertcalculator.co/billing">if not, head over to the billing page</a>) and toggle the &quot;Use API&quot; switch in in the settings pane in the calculator editor.</p>
 
 <p>Now make sure you have embedded the calculator on your website. After that, you can create an instance of the ConvertCalculator object. The ID of your calculator is required:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'ccloaded'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">convertcalculator</span> <span class="o">=</span> <span class="nx">cc</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span><span class="s1">'HfJXPJuj5pDCEpLfr'</span><span class="p">);</span>
+<pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"ccloaded"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">ccInstance</span> <span class="o">=</span> <span class="nx">cc</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span><span class="s2">"HfJXPJuj5pDCEpLfr"</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre><h1 id='calculator'>Calculator</h1><h2 id='methods'>Methods</h2><h3 id='addformdata-name-value'>addFormData(name, value)</h3>
 <p>Adds and extra key value pair to a form submission.</p>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">addFormData</span><span class="p">(</span><span class="s1">'No. of Bananas'</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
-</code></pre><h2 id='on-event-handler'>on(event, handler)</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">ccInstance</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">addFormData</span><span class="p">(</span><span class="s2">"No. of Bananas"</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+</code></pre><h3 id='on-event-handler'>on(event, handler)</h3>
 <p>The way to communicate with the calculator is through events. The following events can be emitted:</p>
 
 <table><thead>
@@ -317,11 +314,11 @@
 <td>Triggered when a visitor interacts with the calculator</td>
 </tr>
 </tbody></table>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="p">(</span><span class="nx">formData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">ccInstance</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="nx">formData</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formData</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'interaction'</span><span class="p">,</span> <span class="p">(</span><span class="nx">questions</span><span class="p">,</span> <span class="nx">formulas</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">ccInstance</span><span class="p">.</span><span class="nx">calculator</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"interaction"</span><span class="p">,</span> <span class="p">(</span><span class="nx">questions</span><span class="p">,</span> <span class="nx">formulas</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">questions</span><span class="p">,</span> <span class="nx">formulas</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre><h1 id='questions'>Questions</h1><h2 id='properties'>Properties</h2>
@@ -338,18 +335,7 @@
 </tbody></table>
 <h2 id='methods-2'>Methods</h2><h3 id='getbyreference-questionreference'>getByReference(questionReference)</h3>
 <p>Get a question model by it&#39;s Reference (eg. QA).</p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">getByReference</span><span class="p">(</span><span class="s1">'QA'</span><span class="p">);</span>
-</code></pre><h3 id='add-properties-viewindex-columnindex'>add(properties, viewIndex, columnIndex)</h3>
-<p>Add a new question to the calculator.</p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">newQuestion</span> <span class="o">=</span> <span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
-  <span class="na">_id</span><span class="p">:</span> <span class="s1">'sample_id'</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">:</span> <span class="s1">'How much money is in the bananastand?'</span><span class="p">,</span>
-  <span class="na">titleFontType</span><span class="p">:</span> <span class="s1">'h3'</span><span class="p">,</span>
-  <span class="na">titleIsVisible</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">description</span><span class="p">:</span> <span class="s1">'You tell me, mr. Manager'</span><span class="p">,</span>
-  <span class="na">type</span><span class="p">:</span> <span class="s1">'custom'</span><span class="p">,</span>
-  <span class="na">order</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">ccInstance</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">getByReference</span><span class="p">(</span><span class="s2">"QA"</span><span class="p">);</span>
 </code></pre><h1 id='question'>Question</h1><h2 id='properties-2'>Properties</h2>
 <table><thead>
 <tr>
@@ -386,21 +372,35 @@
 <td>Object of type Properties</td>
 </tr>
 </tbody></table>
-<h2 id='methods-3'>Methods</h2><h3 id='getanswer'>getAnswer()</h3>
+<h2 id='methods-3'>Methods</h2><h3 id='on-event-handler-2'>on(event, handler)</h3>
+<p>The way to communicate with the qyestuib is through events. The following events can be emitted:</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>valueChange</strong></td>
+<td>Triggered when a visitor interacts with the question</td>
+</tr>
+</tbody></table>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">QA</span> <span class="o">=</span> <span class="nx">ccInstance</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">getByReference</span><span class="p">(</span><span class="s2">"QA"</span><span class="p">);</span>
+<span class="nx">QA</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"valueChange"</span><span class="p">,</span> <span class="nx">answer</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Answer:"</span><span class="p">,</span> <span class="nx">answer</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre><h3 id='getanswer'>getAnswer()</h3>
 <p>Get the current answer to a question programmatically. Every question has a <code>label</code> and a <code>value</code>. The <code>label</code> is a formatted <code>value</code>. Some questions (like the Places and Date question) have an extra <code>data</code> object that include some additional values (e.g. <code>isWeekend</code> in Date and <code>fromPlaceId</code> in Places).</p>
 <pre class="highlight plaintext"><code>const answer = question.getAnswer();
 const { label, value, data } = answer;
 </code></pre><h3 id='setanswer-answer'>setAnswer(answer)</h3>
 <p>Set the answer to a question programmatically. This will update any formulas in which the question is included/</p>
-<h3 id='setdescription-description'>setDescription(description)</h3>
-<p>Set the description of the question programmatically.</p>
-<h3 id='settitle-title'>setTitle(title)</h3>
-<p>Set the title of the question programmatically.</p>
-<pre class="highlight javascript tab-javascript"><code>  <span class="nx">question</span><span class="p">.</span><span class="nx">setAnswer</span><span class="p">({</span> <span class="na">label</span><span class="p">:</span> <span class="s1">'30'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="mi">35</span> <span class="p">});</span>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">question</span><span class="p">.</span><span class="nx">setAnswer</span><span class="p">({</span> <span class="na">label</span><span class="p">:</span> <span class="s2">"30"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="mi">35</span> <span class="p">});</span>
 </code></pre><h3 id='getelement'>getElement()</h3>
 <p>Get the DOM element of the question. If you want to create custom HTML, you need to get the DOM element and do something with it.</p>
-<pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">questionEl</span> <span class="o">=</span> <span class="nx">question</span><span class="p">.</span><span class="nx">getElement</span><span class="p">();</span>
-  <span class="nx">questionEl</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;input type="month" /&gt;'</span><span class="p">;</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">questionEl</span> <span class="o">=</span> <span class="nx">question</span><span class="p">.</span><span class="nx">getElement</span><span class="p">();</span>
+<span class="nx">questionEl</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;input type="month" /&gt;'</span><span class="p">;</span>
 </code></pre><h1 id='formulas'>Formulas</h1><h2 id='properties-3'>Properties</h2>
 <table><thead>
 <tr>
@@ -415,17 +415,7 @@ const { label, value, data } = answer;
 </tbody></table>
 <h2 id='methods-4'>Methods</h2><h3 id='getbyreference-formulareference'>getByReference(formulaReference)</h3>
 <p>Get a Formula model by it&#39;s reference (e.g. FA).</p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">formulas</span><span class="p">.</span><span class="nx">getByReference</span><span class="p">(</span><span class="s1">'FA'</span><span class="p">);</span>
-</code></pre><h3 id='add-properties-viewindex-columnindex-2'>add(properties, viewIndex, columnIndex)</h3>
-<p>Add a new formula to the calculator.</p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">newFormula</span> <span class="o">=</span> <span class="nx">convertcalculator</span><span class="p">.</span><span class="nx">formulas</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
-  <span class="na">_id</span><span class="p">:</span> <span class="s1">'new_formula'</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">:</span> <span class="s1">'There is always money in the bananastand'</span><span class="p">,</span>
-  <span class="na">titleFontType</span><span class="p">:</span> <span class="s1">'h3'</span><span class="p">,</span>
-  <span class="na">titleIsVisible</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">order</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="na">equation</span><span class="p">:</span> <span class="s1">'QA * QC'</span><span class="p">,</span>
-<span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">ccInstance</span><span class="p">.</span><span class="nx">formulas</span><span class="p">.</span><span class="nx">getByReference</span><span class="p">(</span><span class="s2">"FA"</span><span class="p">);</span>
 </code></pre><h1 id='formula'>Formula</h1><h2 id='properties-4'>Properties</h2>
 <table><thead>
 <tr>
@@ -454,24 +444,19 @@ const { label, value, data } = answer;
 <td>Number</td>
 </tr>
 </tbody></table>
-<h2 id='methods-5'>Methods</h2><h3 id='setequation-equation'>setEquation(equation)</h3>
-<p>Set the equation of a formula programmatically.</p>
-<h3 id='setdescription-description-2'>setDescription(description)</h3>
-<p>Set the description of the formula programmatically.</p>
-<h3 id='settitle-title-2'>setTitle(title)</h3>
-<p>Set the title of the formula programmatically.</p>
-<pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">otherValue</span> <span class="o">=</span> <span class="mi">145</span><span class="p">;</span>
-  <span class="nx">question</span><span class="p">.</span><span class="nx">setEquation</span><span class="p">(</span><span class="s2">`QA * QB * </span><span class="p">${</span><span class="nx">otherValue</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-</code></pre><h3 id='getresult'>getResult()</h3>
+<h2 id='methods-5'>Methods</h2><h3 id='getresult'>getResult()</h3>
 <p>Get the current formula result. This is an object that contains <code>result</code>, <code>resultFormatted</code> and <code>resultFormattedFull</code>.</p>
-<pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">formulaResult</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getResult</span><span class="p">();</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The formatted number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormatted</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The formatted number with prefix and suffix: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormattedFull</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">formulaResult</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getResult</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The formatted number: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormatted</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+  <span class="s2">`The formatted number with prefix and suffix: </span><span class="p">${</span><span class="nx">formulaResult</span><span class="p">.</span><span class="nx">resultFormattedFull</span><span class="p">}</span><span class="s2">`</span>
+<span class="p">);</span>
 </code></pre><h3 id='getelement-2'>getElement()</h3>
 <p>Get the DOM element of the formula.</p>
-<pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">formulaEl</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getElement</span><span class="p">();</span>
-  <span class="nx">formulaEl</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;h3&gt;Completely remove the formula result and replace it with something else.&lt;/h3&gt;'</span><span class="p">;</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">formulaEl</span> <span class="o">=</span> <span class="nx">formula</span><span class="p">.</span><span class="nx">getElement</span><span class="p">();</span>
+<span class="nx">formulaEl</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span>
+  <span class="s2">"&lt;h3&gt;Completely remove the formula result and replace it with something else.&lt;/h3&gt;"</span><span class="p">;</span>
 </code></pre>
       </div>
       <div class="dark-box">
