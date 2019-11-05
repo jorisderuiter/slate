@@ -21,36 +21,38 @@ First head over [to the editor](https://app.convertcalculator.co). Make sure you
 Now make sure you have embedded the calculator on your website. After that, you can create an instance of the ConvertCalculator object. The ID of your calculator is required:
 
 ```javascript
-window.addEventListener('ccloaded', () => {
-  const convertcalculator = cc.getInstance('HfJXPJuj5pDCEpLfr');
+window.addEventListener("ccloaded", () => {
+  const ccInstance = cc.getInstance("HfJXPJuj5pDCEpLfr");
 });
 ```
+
 # Calculator
 
 ## Methods
 
 ### addFormData(name, value)
+
 Adds and extra key value pair to a form submission.
 
 ```javascript
-convertcalculator.calculator.addFormData('No. of Bananas', 12);
+ccInstance.calculator.addFormData("No. of Bananas", 12);
 ```
 
-## on(event, handler)
+### on(event, handler)
 
 The way to communicate with the calculator is through events. The following events can be emitted:
 
-Event | Description
---------- | -----------
-**submit** | Triggered when a visitor submits a form
-**interaction** | Triggered when a visitor interacts with the calculator
+| Event           | Description                                            |
+| --------------- | ------------------------------------------------------ |
+| **submit**      | Triggered when a visitor submits a form                |
+| **interaction** | Triggered when a visitor interacts with the calculator |
 
 ```javascript
-convertcalculator.calculator.on('submit', (formData) => {
+ccInstance.calculator.on("submit", formData => {
   console.log(formData);
 });
 
-convertcalculator.calculator.on('interaction', (questions, formulas) => {
+ccInstance.calculator.on("interaction", (questions, formulas) => {
   console.log(questions, formulas);
 });
 ```
@@ -59,52 +61,53 @@ convertcalculator.calculator.on('interaction', (questions, formulas) => {
 
 ## Properties
 
-Parameter | Description
---------- | -----------
-`questions` | An array of Question objects
-
+| Parameter   | Description                  |
+| ----------- | ---------------------------- |
+| `questions` | An array of Question objects |
 
 ## Methods
 
 ### getByReference(questionReference)
+
 Get a question model by it's Reference (eg. QA).
 
 ```javascript
-const question = convertcalculator.questions.getByReference('QA');
-```
-
-
-### add(properties)
-Add a new question to the calculator.
-
-```javascript
-const newQuestion = convertcalculator.questions.add({
-  _id: 'sample_id',
-  title: 'How much money is in the bananastand?',
-  description: 'You tell me, mr. Manager',
-  type: 'custom',
-  order: 1,
-});
+const question = ccInstance.questions.getByReference("QA");
 ```
 
 # Question
 
 ## Properties
 
-Parameter | Description
---------- | -----------
-`_id` | String
-`reference` | String
-`title` | String
-`description` | String
-`order` | Number
-`type` | String `(range, radio, places, dates, orderList, separator, switch, text)`
-`[type]` | Object of type Properties
-
+| Parameter     | Description                                                                |
+| ------------- | -------------------------------------------------------------------------- |
+| `_id`         | String                                                                     |
+| `reference`   | String                                                                     |
+| `title`       | String                                                                     |
+| `description` | String                                                                     |
+| `order`       | Number                                                                     |
+| `type`        | String `(range, radio, places, dates, orderList, separator, switch, text)` |
+| `[type]`      | Object of type Properties                                                  |
 
 ## Methods
 
+### on(event, handler)
+
+The way to communicate with the qyestuib is through events. The following events can be emitted:
+
+| Event           | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| **valueChange** | Triggered when a visitor interacts with the question |
+
+```javascript
+const QA = ccInstance.questions.getByReference("QA");
+QA.on("valueChange", answer => {
+  console.log("Answer:", answer);
+});
+```
+
 ### getAnswer()
+
 Get the current answer to a question programmatically. Every question has a `label` and a `value`. The `label` is a formatted `value`. Some questions (like the Places and Date question) have an extra `data` object that include some additional values (e.g. `isWeekend` in Date and `fromPlaceId` in Places).
 
 ```JavaScript
@@ -113,100 +116,73 @@ const { label, value, data } = answer;
 ```
 
 ### setAnswer(answer)
+
 Set the answer to a question programmatically. This will update any formulas in which the question is included/
 
-### setDescription(description)
-Set the description of the question programmatically.
-
-### setTitle(title)
-Set the title of the question programmatically.
-
 ```javascript
-  question.setAnswer({ label: '30', value: 35 });
+question.setAnswer({ label: "30", value: 35 });
 ```
 
 ### getElement()
+
 Get the DOM element of the question. If you want to create custom HTML, you need to get the DOM element and do something with it.
 
 ```javascript
-  const questionEl = question.getElement();
-  questionEl.innerHTML = '<input type="month" />';
+const questionEl = question.getElement();
+questionEl.innerHTML = '<input type="month" />';
 ```
-
 
 # Formulas
 
 ## Properties
 
-Parameter | Description
---------- | -----------
-`formulas` | An array of Formula objects
+| Parameter  | Description                 |
+| ---------- | --------------------------- |
+| `formulas` | An array of Formula objects |
 
 ## Methods
 
 ### getByReference(formulaReference)
+
 Get a Formula model by it's reference (e.g. FA).
 
 ```javascript
-const question = convertcalculator.formulas.getByReference('FA');
-```
-
-
-### add(properties)
-Add a new formula to the calculator.
-
-```javascript
-const newFormula = convertcalculator.questions.add({
-  _id: 'new_formula',
-  title: 'There is always money in the bananastand',
-  order: 1,
-  equation: 'QA * QC',
-});
+const question = ccInstance.formulas.getByReference("FA");
 ```
 
 # Formula
 
 ## Properties
 
-Parameter | Description
---------- | -----------
-`_id` | String
-`reference` | String
-`title` | String
-`description` | String
-`order` | Number
-
+| Parameter     | Description |
+| ------------- | ----------- |
+| `_id`         | String      |
+| `reference`   | String      |
+| `title`       | String      |
+| `description` | String      |
+| `order`       | Number      |
 
 ## Methods
 
-### setEquation(equation)
-Set the equation of a formula programmatically.
-
-### setDescription(description)
-Set the description of the formula programmatically.
-
-### setTitle(title)
-Set the title of the formula programmatically.
-
-```javascript
-  const otherValue = 145;
-  question.setEquation(`QA * QB * ${otherValue}`);
-```
-
 ### getResult()
+
 Get the current formula result. This is an object that contains `result`, `resultFormatted` and `resultFormattedFull`.
 
 ```javascript
-  const formulaResult = formula.getResult();
-  console.log(`The number: ${formulaResult.result}`);
-  console.log(`The formatted number: ${formulaResult.resultFormatted}`);
-  console.log(`The formatted number with prefix and suffix: ${formulaResult.resultFormattedFull}`);
+const formulaResult = formula.getResult();
+console.log(`The number: ${formulaResult.result}`);
+console.log(`The formatted number: ${formulaResult.resultFormatted}`);
+console.log(
+  `The formatted number with prefix and suffix: ${formulaResult.resultFormattedFull}`
+);
 ```
 
 ### getElement()
+
 Get the DOM element of the formula.
 
 ```javascript
-  const formulaEl = formula.getElement();
-  formulaEl.innerHTML = '<h3>Completely remove the formula result and replace it with something else.</h3>';
+const formulaEl = formula.getElement();
+formulaEl.innerHTML =
+  "<h3>Completely remove the formula result and replace it with something else.</h3>";
 ```
