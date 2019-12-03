@@ -48,12 +48,16 @@ The way to communicate with the calculator is through events. The following even
 | **interaction** | Triggered when a visitor interacts with the calculator |
 
 ```javascript
-ccInstance.calculator.on("submit", formData => {
+ccInstance.calculator.on("submit", response => {
+  const { formData } = response;
+
   console.log(formData);
 });
 
-ccInstance.calculator.on("interaction", (questions, formulas) => {
-  console.log(questions, formulas);
+ccInstance.calculator.on("interaction", response => {
+  const { questionReference, answer, answers, results } = response;
+
+  console.log(questionReference, answer, answers, results);
 });
 ```
 
@@ -85,7 +89,6 @@ const question = ccInstance.questions.getByReference("QA");
 | `reference`   | String                                                                     |
 | `title`       | String                                                                     |
 | `description` | String                                                                     |
-| `order`       | Number                                                                     |
 | `type`        | String `(range, radio, places, dates, orderList, separator, switch, text)` |
 | `[type]`      | Object of type Properties                                                  |
 
@@ -101,7 +104,9 @@ The way to communicate with the qyestuib is through events. The following events
 
 ```javascript
 const QA = ccInstance.questions.getByReference("QA");
-QA.on("valueChange", answer => {
+QA.on("valueChange", response => {
+  const { answer } = response;
+
   console.log("Answer:", answer);
 });
 ```
@@ -147,7 +152,7 @@ questionEl.innerHTML = '<input type="month" />';
 Get a Formula model by it's reference (e.g. FA).
 
 ```javascript
-const question = ccInstance.formulas.getByReference("FA");
+const formula = ccInstance.formulas.getByReference("FA");
 ```
 
 # Formula
